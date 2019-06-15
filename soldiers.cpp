@@ -1,6 +1,6 @@
 
 #include"soldiers.h"
-
+#include"Hero.h"
 USING_NS_CC;
 extern bool Visit[80][80];
 extern Map<int, hatred1*> hatred;
@@ -9,6 +9,7 @@ extern Vector<Armor *> armors;
 extern int soldierNum;
 extern TMXTiledMap* MAP;
 extern struct objs towers[2], heros[2], soldiers[2];
+extern Hero* myHero;
 struct FGH
 {
 	int F, G, H;
@@ -141,7 +142,8 @@ Enemy* soldier::FindNewTarget()
 		int i=0, n= 0, total = hatred.at(this->num)->mylist.size();
 		while(n<total)
 		{
-
+			if(hatred.at(this->num)->mylist.at(i)->enemy==myHero)
+				CCLOG("Cun ZAI");
 			if (hatred.at(this->num)->mylist.at(i)->enemy->isDead == 1)
 			{
 				delete hatred.at(this->num)->mylist.at(i);
@@ -193,7 +195,7 @@ void soldier::Attack(float t)
 		Armor *armor = Armor::createone(this->getPositionX(), this->getPositionY(),1);
 		armor->father = this;
 		armor->color = this->color;
-		armor->damage = this->damage;
+		armor->damage = 100;
 		float mex = this->getPositionX();
 		float mey = this->getPositionY();
 		float x = this->target->getPositionX();

@@ -10,6 +10,10 @@ public:
 	CREATE_FUNC(SelectMenu);
 	static Scene* createscene();
 	void menuCloseCallback(Ref* sender);
+	static int Hero_type;
+	void slectHero01(Ref* obj);
+	void slectHero02(Ref* obj);
+	void slectHero03(Ref* obj);
 };
 
 #endif
